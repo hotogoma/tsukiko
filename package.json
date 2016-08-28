@@ -1,0 +1,19 @@
+{
+  "name": "tsukiko",
+  "version": "0.1.0",
+  "description": "HotoGoma Bot",
+  "main": "bot.js",
+  "scripts": {
+    "start": "nf start",
+    "test": "mocha"
+  },
+  "author": "hoto17296",
+  "license": "MIT",
+  "devDependencies": {
+    "foreman": "^2.0.0",
+    "mocha": "^3.0.2"
+  },
+  "dependencies": {
+    "@slack/client": "^3.5.4"
+  }
+}
