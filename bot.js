@@ -1,15 +1,35 @@
-const RtmClient = require('@slack/client').RtmClient;
+const SlackBot = require('./lib/SlackBot');
 const RedisStorage = require('./lib/RedisStorage');
-const JobList = require('./lib/JobList');
 
-const RTM_CLIENT_EVENTS = require('@slack/client').CLIENT_EVENTS.RTM;
-
-const RTM = new RtmClient( process.env.SLACK_TOKEN );
-const Storage = new RedisStorage( process.env.REDIS_URL );
-const Jobs = new JobList();
-
-RTM.on(RTM_CLIENT_EVENTS.RTM_CONNECTION_OPENED, () => {
-  Jobs.startAll();
+const bot = new SlackBot({
+  token: process.env.SLACK_TOKEN,
+  default_channel: { id: process.env.SLACK_DEFAULT_CHANNEL_ID },
+  storage: new RedisStorage( process.env.REDIS_URL ),
+  debug: process.env.NODE_ENV !== 'production',
 });
 
-RTM.start();
+
+bot.hear(/hoge/, (msg) => {
+  msg.send('foo');
+  msg.reply('bar');
+});
+
+bot.respond(/天気/, (msg) => {
+  var title = '明日の天気は 雪 です';
+  var attachment = {
+    fallback: title,
+    title: title,
+    fields: [
+      { title: '最高気温', value: '10℃ (-2℃)', short: true },
+      { title: '最低気温', value: '-2℃ (-5℃)', short: true },
+    ],
+  };
+  msg.reply({ text: '天気です', attachments: [ attachment ] });
+});
+
+bot.jobs.add('0 0 19 * * *', () => {
+  bot.send('19時ですよ');
+});
+
+
+bot.start();
