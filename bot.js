@@ -1,6 +1,7 @@
 const SlackBot = require('./lib/SlackBot');
 const RedisStorage = require('./lib/RedisStorage');
 
+
 const bot = new SlackBot({
   token: process.env.SLACK_TOKEN,
   default_channel: { id: process.env.SLACK_DEFAULT_CHANNEL_ID },
@@ -24,6 +25,9 @@ bot.respond(/PING$/i, (msg) => msg.reply('PONG!'));
 const pingRegex = /(((い|ゐ|居)(て?))(?!り)|(お|を|居)|((い|居)(て?)は)(?!ま))((る|ん(?=の))|((り?)ます)(?!ん))((の?ん?)(です)?|(んだ)(?!か))?(か(い?な?|よ|ね)?|(よ?)(ね|な))?\s?(\?|？)/i;
 bot.respond(pingRegex, (msg) => msg.send('はい'));
 
+// eval.js
+const SafeEval = require('./lib/SafeEval');
+bot.respond(/eval (.+)$/i, (msg) => bot.send(SafeEval(msg.match[1])));
 
 bot.respond(/天気/, (msg) => {
   var title = '明日の天気は 雪 です';
