@@ -16,6 +16,7 @@
   "dependencies": {
     "@slack/client": "^3.6.0",
     "cron": "^1.1.0",
+    "google-images": "^1.0.0",
     "redis": "^2.6.2"
   }
 }
