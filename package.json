@@ -17,6 +17,7 @@
     "@slack/client": "^3.6.0",
     "cron": "^1.1.0",
     "google-images": "^1.0.0",
+    "irkit": "^0.1.1",
     "redis": "^2.6.2"
   }
 }
