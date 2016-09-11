@@ -14,6 +14,16 @@ module.exports = (bot) => {
   const pingRegExp = /(((い|ゐ|居)(て?))(?!り)|(お|を|居)|((い|居)(て?)は)(?!ま))((る|ん(?=の))|((り?)ます)(?!ん))((の?ん?)(です)?|(んだ)(?!か))?(か(い?な?|よ|ね)?|(よ?)(ね|な))?\s?(\?|？)/i;
   bot.respond(pingRegExp, (msg) => msg.send('はい'));
 
+  // メンション内容を形態素解析して反応する
+  bot.respond(/.*/, (msg) => {
+    if ( ! msg.tokenized ) return;
+
+    // 感動詞をオウム返しする
+    msg.tokenized.forEach((token) => {
+      if ( token.pos == '感動詞' ) msg.reply( token.surface_form );
+    });
+  });
+
 
   bot.respond(/天気/, (msg) => {
     var title = '明日の天気は 雪 です';
