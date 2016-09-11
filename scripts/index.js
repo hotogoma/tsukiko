@@ -3,4 +3,5 @@ module.exports = [
   require('./image'),
   require('./eval'),
   require('./irkit'),
+  require('./suddendeath'),
 ];
