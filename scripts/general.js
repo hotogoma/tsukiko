@@ -23,23 +23,4 @@ module.exports = (bot) => {
       if ( token.pos == '感動詞' ) msg.reply( token.surface_form );
     });
   });
-
-
-  bot.respond(/天気/, (msg) => {
-    var title = '明日の天気は 雪 です';
-    var attachment = {
-      fallback: title,
-      title: title,
-      fields: [
-        { title: '最高気温', value: '10℃ (-2℃)', short: true },
-        { title: '最低気温', value: '-2℃ (-5℃)', short: true },
-      ],
-    };
-    msg.reply({ text: '天気です', attachments: [ attachment ] });
-  });
-
-  bot.jobs.add('0 0 19 * * *', () => {
-    bot.send('19時ですよ');
-  });
-
 }

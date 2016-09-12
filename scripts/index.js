@@ -4,4 +4,5 @@ module.exports = [
   require('./eval'),
   require('./irkit'),
   require('./suddendeath'),
+  require('./weather'),
 ];
