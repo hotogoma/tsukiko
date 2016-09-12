@@ -5,4 +5,5 @@ module.exports = [
   require('./irkit'),
   require('./suddendeath'),
   require('./weather'),
+  require('./bargain'),
 ];
