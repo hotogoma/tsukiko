@@ -1,5 +1,6 @@
 module.exports = [
   require('./general'),
+  require('./calendar'),
   require('./image'),
   require('./eval'),
   require('./irkit'),

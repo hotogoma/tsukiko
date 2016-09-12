@@ -22,6 +22,8 @@
     "kuromoji": "^0.1.1",
     "redis": "^2.6.2",
     "request": "^2.74.0",
+    "shukjitz": "^0.2.0",
+    "sprintf": "^0.1.5",
     "sudden-death": "^0.1.1",
     "xml2js": "^0.4.17"
   }
