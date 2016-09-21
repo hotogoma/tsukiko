@@ -17,14 +17,12 @@ bot.storage = new RedisStorage( process.env.REDIS_URL );
 bot.jobs = new JobList();
 bot.http = express();
 
-bot.on(SlackBot.EVENTS.CONNECTION.OPENED, () => {
-  bot.jobs.startAll();
-  bot.http.listen( process.env.HTTP_PORT || 80 );
-});
-
 const kuromoji = new KuromojiMiddleware();
 bot.on(SlackBot.EVENTS.MESSAGE.RECEIVED, kuromoji.onReceive.bind(kuromoji));
 
 scripts.forEach((script) => script(bot));
 
-bot.start();
+bot.start(() => {
+  bot.jobs.startAll();
+  bot.http.listen( process.env.HTTP_PORT || 80 );
+});
