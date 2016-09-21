@@ -9,10 +9,8 @@ Array.prototype.pickRandom = function() {
   return this[ Math.floor( Math.random() * this.length ) ];
 };
 
-const bot = new SlackBot({
-  token: process.env.SLACK_TOKEN,
-  default_channel: { id: process.env.SLACK_DEFAULT_CHANNEL_ID },
-  debug: process.env.NODE_ENV !== 'production',
+const bot = new SlackBot(process.env.SLACK_TOKEN, {
+  default_channel: process.env.SLACK_DEFAULT_CHANNEL,
 });
 
 bot.storage = new RedisStorage( process.env.REDIS_URL );
