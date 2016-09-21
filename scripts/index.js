@@ -7,4 +7,5 @@ module.exports = [
   require('./suddendeath'),
   require('./weather'),
   require('./bargain'),
+  require('./taisha'),
 ];

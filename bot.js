@@ -2,6 +2,7 @@ const SlackBot = require('./lib/SlackBot');
 const RedisStorage = require('./lib/RedisStorage');
 const JobList = require('./lib/JobList');
 const express = require('express');
+const bodyParser = require('body-parser');
 const KuromojiMiddleware = require('./lib/KuromojiMiddleware');
 const scripts = require('./scripts');
 
@@ -14,8 +15,11 @@ const bot = new SlackBot(process.env.SLACK_TOKEN, {
 });
 
 bot.storage = new RedisStorage( process.env.REDIS_URL );
+
 bot.jobs = new JobList();
+
 bot.http = express();
+bot.http.use(bodyParser.json());
 
 const kuromoji = new KuromojiMiddleware();
 bot.on(SlackBot.EVENTS.MESSAGE.RECEIVED, kuromoji.onReceive.bind(kuromoji));
