@@ -4,8 +4,7 @@ module.exports = (bot) => {
 
   bot.http.post('/taisha', (req, res) => {
     if ( token && req.query.token !== token ) return res.send(401);
-    // TODO
-    res.send(req.body.username);
+    bot.send(`【${req.body.username}】ﾀｲｼｬ!!!`, () => res.send(200));
   });
 
 };
