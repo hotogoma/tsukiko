@@ -4,6 +4,7 @@ const JobList = require('./lib/JobList');
 const express = require('express');
 const bodyParser = require('body-parser');
 const KuromojiMiddleware = require('./lib/KuromojiMiddleware');
+const members = require('./configs/members');
 const scripts = require('./scripts');
 
 Array.prototype.pickRandom = function() {
@@ -27,6 +28,11 @@ bot.on(SlackBot.EVENTS.MESSAGE.RECEIVED, kuromoji.onReceive.bind(kuromoji));
 scripts.forEach((script) => script(bot));
 
 bot.start(() => {
+  bot.data.members = members.map((member) => {
+    const user = bot.data.users.filter((user) => user.name === member.name)[0];
+    if ( user ) member = Object.assign({}, user, member);
+    return member;
+  });
   bot.jobs.startAll();
   bot.http.listen( process.env.HTTP_PORT || 80 );
 });

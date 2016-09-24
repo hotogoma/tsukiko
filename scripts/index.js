@@ -8,4 +8,5 @@ module.exports = [
   require('./weather'),
   require('./bargain'),
   require('./taisha'),
+  require('./ochingin'),
 ];
