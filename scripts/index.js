@@ -10,4 +10,5 @@ module.exports = [
   require('./taisha'),
   require('./ochingin'),
   require('./hitpoint'),
+  require('./loan'),
 ];
