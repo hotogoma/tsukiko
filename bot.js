@@ -32,5 +32,5 @@ bot.start(() => {
     return member;
   });
   bot.jobs.startAll();
-  bot.http.listen( process.env.HTTP_PORT || 80 );
+  bot.http.listen( process.env.PORT || 80 );
 });
