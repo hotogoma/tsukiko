@@ -1,1 +1,1 @@
-bot: node .
+web: node .
