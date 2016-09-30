@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "HotoGoma Bot",
   "main": "bot.js",
+  "engines": {
+    "node": "6"
+  },
   "scripts": {
     "start": "nf start",
     "test": "mocha"
