@@ -1,3 +1,11 @@
+const help = {
+  title: 'Weather',
+  description: [
+    '毎晩次の日の天気を表示',
+    '`bot 天気` 明日の天気を調べる',
+  ],
+};
+
 const getWeather = require('../lib/weather');
 
 function weather2slackAttachment(weather) {
@@ -32,3 +40,5 @@ module.exports = (bot) => {
   });
 
 }
+
+module.exports.help = help;

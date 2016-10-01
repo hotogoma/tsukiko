@@ -1,3 +1,11 @@
+const help = {
+  title: 'Calendar',
+  description: [
+    '毎朝その日のことを通知',
+    '`bot 今日` 今日のことを通知'
+  ],
+};
+
 const sprintf = require('sprintf');
 const Shukjitz = require('shukjitz');
 const date2sekki = require('../lib/date2sekki');
@@ -44,3 +52,5 @@ module.exports = (bot) => {
   });
 
 };
+
+module.exports.help = help;

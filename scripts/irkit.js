@@ -1,3 +1,12 @@
+const help = {
+  title: 'IRKit',
+  description: [
+    '`bot テレビ(つけて|消して)` テレビを操作',
+    '`bot エアコン(つけて|消して)` エアコンを操作',
+    '`bot 電気(つけて|消して)` 照明を操作',
+  ],
+};
+
 const IRKit = require('irkit');
 const signals = require('../configs/irkit.json');
 
@@ -27,3 +36,5 @@ module.exports = (bot) => {
     });
   });
 }
+
+module.exports.help = help;

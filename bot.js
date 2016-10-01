@@ -23,7 +23,25 @@ bot.http.use(bodyParser.json());
 const kuromoji = new utils.KuromojiMiddleware();
 bot.on(SlackBot.EVENTS.MESSAGE.RECEIVED, kuromoji.onReceive.bind(kuromoji));
 
-scripts.forEach((script) => script(bot));
+var helps = [];
+scripts.forEach((script) => {
+  if ( script.help ) helps.push( script.help );
+  script(bot);
+});
+
+bot.respond(/help$/i, (msg) => {
+  text = '';
+  helps.map((help) => {
+    if ( help.title ) text += `*${help.title}*\n`;
+    if ( help.description ) {
+      let description = help.description;
+      if ( ! Array.isArray(description) ) description = description.split("\n");
+      text += description.map((s) => "\t" + s.replace(/^`bot (.+)`/, '`' + bot.data.self.name + ' $1`')).join("\n");
+    }
+    text += "\n";
+  });
+  msg.send(text);
+});
 
 bot.start(() => {
   bot.data.members = members.map((member) => {

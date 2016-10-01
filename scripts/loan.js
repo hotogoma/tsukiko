@@ -1,3 +1,13 @@
+const help = {
+  title: 'Loan',
+  description: [
+    '`bot loan` 残額を表示',
+    '`bot loan init <num>` 残額を初期化 (単位: 万円)',
+    '`bot loan +<num>` 残額を増やす (単位: 万円)',
+    '`bot loan -<num>` 残額を減らす (単位: 万円)',
+  ],
+};
+
 const LOAN_KEY = process.env.LOAN_KEY || 'loan';
 
 module.exports = (bot) => {
@@ -31,3 +41,5 @@ module.exports = (bot) => {
   });
 
 };
+
+module.exports.help = help;

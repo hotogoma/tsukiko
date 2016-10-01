@@ -1,3 +1,10 @@
+const help = {
+  title: 'Bargain',
+  description: [
+    '`bot 特売` 今日の特売情報を調べる'
+  ],
+};
+
 const Cookpad = require('../lib/Cookpad');
 
 const BARGAINS = [
@@ -36,3 +43,5 @@ module.exports = (bot) => {
   });
 
 }
+
+module.exports.help = help;

@@ -1,3 +1,10 @@
+const help = {
+  title: 'SuddenDeath',
+  description: [
+    '`bot 突然の<string>` 突然死ぬ',
+  ],
+};
+
 const SuddenDeath = require('sudden-death');
 
 module.exports = (bot) => {
@@ -7,3 +14,5 @@ module.exports = (bot) => {
   });
 
 };
+
+module.exports.help = help;

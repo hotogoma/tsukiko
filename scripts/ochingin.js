@@ -1,3 +1,8 @@
+const help = {
+  title: 'Ochingin',
+  description: '給料日前に通知',
+};
+
 const Ochingin = require('ochingin');
 const Shukjitz = require('shukjitz');
 
@@ -15,3 +20,5 @@ module.exports = (bot) => {
     // TODO 次の給料日までのカウントダウン
   });
 }
+
+module.exports.help = help;

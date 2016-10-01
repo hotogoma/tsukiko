@@ -1,3 +1,10 @@
+const help = {
+  title: 'Image',
+  description: [
+    '`bot image <string>` 画像を検索',
+  ],
+};
+
 const GoogleImages = require('google-images');
 
 const GOOGLE_CSE_ID  = process.env.GOOGLE_CSE_ID;
@@ -14,3 +21,5 @@ module.exports = (bot) => {
     }).catch((e) => console.error(e))
   });
 }
+
+module.exports.help = help;

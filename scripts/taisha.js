@@ -1,3 +1,8 @@
+const help = {
+  title: 'Taisha',
+  description: '退社したら通知',
+};
+
 const token = process.env.HTTP_ACCESS_TOKEN;
 
 module.exports = (bot) => {
@@ -10,3 +15,5 @@ module.exports = (bot) => {
   });
 
 };
+
+module.exports.help = help;
