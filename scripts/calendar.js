@@ -51,6 +51,34 @@ module.exports = (bot) => {
     bot.send({ attachments: [ attachment ] });
   });
 
+  bot.jobs.add('0 0 22 * * *', () => {
+    const tomorrow = new Date();
+    tomorrow.setDate( tomorrow.getDate() + 1 );
+
+    // ごみの日
+    var trash = null;
+    switch ( tomorrow.getDay() ) {
+      case 3: // 水曜
+      case 6: // 土曜
+        trash = ':fire: 可燃ごみ';
+        break;
+      case 5: // 金曜
+        trash = ':recycle: 資源ごみ';
+        break;
+      case 2: // 第１・第３火曜
+        let n = Math.floor( ( tomorrow.getDate() - 1 ) / 7 ) + 1;
+        if ( n === 1 || n === 3 ) {
+          trash = ':battery: 不燃ごみ';
+        }
+        break;
+    }
+
+    if ( trash ) {
+      const text = `明日は ${trash} の日です`;
+      bot.send({ attachments: [{ fallback: text, title: text }] });
+    }
+  });
+
 };
 
 module.exports.help = help;
