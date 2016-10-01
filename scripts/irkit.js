@@ -1,6 +1,7 @@
 const help = {
   title: 'IRKit',
   description: [
+    '毎朝 7時半に照明を点ける / 9時半に照明を消す',
     '`bot テレビ(つけて|消して)` テレビを操作',
     '`bot エアコン(つけて|消して)` エアコンを操作',
     '`bot 電気(つけて|消して)` 照明を操作',
@@ -35,6 +36,10 @@ module.exports = (bot) => {
         .catch((errMsg) => msg.send( errorMsg ));
     });
   });
+
+  // 7時半に照明を点ける / 9時半に照明を消す
+  bot.jobs.add('0 30 7 * * *', () => irkit.send( signals.light.on ));
+  bot.jobs.add('0 30 9 * * *', () => irkit.send( signals.light.off ));
 }
 
 module.exports.help = help;
