@@ -1,7 +1,7 @@
 const help = {
   title: 'Weather',
   description: [
-    '毎晩次の日の天気を表示',
+    '毎晩 次の日の天気を表示',
     '`bot 天気` 明日の天気を調べる',
   ],
 };
