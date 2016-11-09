@@ -8,13 +8,9 @@ const help = {
 const Cookpad = require('../lib/Cookpad');
 
 const BARGAINS = [
-  //{
-  //  shop: '文化堂 戸越銀座店',
-  //  url: 'https://cookpad.com/bargains/%E6%96%87%E5%8C%96%E5%A0%82/4114',
-  //},
   {
-    shop: 'オオゼキ 戸越公園店',
-    url: 'https://cookpad.com/bargains/%E3%82%AA%E3%82%AA%E3%82%BC%E3%82%AD/8406',
+    shop: '文化堂 戸越銀座店',
+    url: 'https://cookpad.com/bargains/%E6%96%87%E5%8C%96%E5%A0%82/4114',
   },
 ];
 
