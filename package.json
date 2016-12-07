@@ -25,9 +25,9 @@
     "irkit": "^0.1.1",
     "ochingin": "github:hotogoma/node-ochingin",
     "request": "^2.74.0",
+    "shrike": "^0.5.0",
+    "shrike-utils": "^0.2.0",
     "shukjitz": "^0.2.0",
-    "slackbot": "github:hoto17296/slackbot#v0.4.1",
-    "slackbot-utils": "github:hoto17296/slackbot-utils",
     "sprintf": "^0.1.5",
     "sudden-death": "^0.1.1",
     "xml2js": "^0.4.17"

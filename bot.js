@@ -1,5 +1,5 @@
-const SlackBot = require('slackbot');
-const utils = require('slackbot-utils');
+const Bot = require('shrike');
+const utils = require('shrike-utils');
 const express = require('express');
 const bodyParser = require('body-parser');
 const members = require('./configs/members');
@@ -8,7 +8,7 @@ Array.prototype.pickRandom = function() {
   return this[ Math.floor( Math.random() * this.length ) ];
 };
 
-const bot = new SlackBot(process.env.SLACK_TOKEN, {
+const bot = new Bot(process.env.SLACK_TOKEN, {
   default_channel: process.env.SLACK_DEFAULT_CHANNEL,
 });
 
@@ -20,7 +20,7 @@ bot.http = express();
 bot.http.use(bodyParser.json());
 
 const kuromoji = new utils.KuromojiMiddleware();
-bot.on(SlackBot.EVENTS.MESSAGE.RECEIVED, kuromoji.onReceive.bind(kuromoji));
+bot.on(Bot.EVENTS.MESSAGE.RECEIVED, kuromoji.onReceive.bind(kuromoji));
 
 bot.loadDir('./scripts');
 
