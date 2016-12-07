@@ -2,6 +2,7 @@
   "name": "tsukiko",
   "version": "0.1.0",
   "description": "HotoGoma Bot",
+  "private": true,
   "main": "bot.js",
   "engines": {
     "node": "7"
