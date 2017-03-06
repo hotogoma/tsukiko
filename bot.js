@@ -17,6 +17,7 @@ bot.storage = new utils.RedisStorage( process.env.REDIS_URL );
 bot.jobs = new utils.JobList();
 
 bot.http = express();
+bot.http.use(bodyParser.urlencoded({ extended: false }));
 bot.http.use(bodyParser.json());
 
 const kuromoji = new utils.KuromojiMiddleware();
