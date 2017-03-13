@@ -9,11 +9,13 @@
   },
   "scripts": {
     "start": "nf start",
-    "test": "mocha"
+    "test": "mocha",
+    "lint": "eslint ."
   },
   "author": "hoto17296",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^3.17.1",
     "foreman": "^2.0.0",
     "mocha": "^3.0.2"
   },

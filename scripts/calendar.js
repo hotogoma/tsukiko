@@ -42,7 +42,7 @@ function getDateAttachment(date) {
 
 module.exports = (bot) => {
 
-  bot.respond(/今日/, (msg) => {
+  bot.respond(/今日/, () => {
     const attachment = getDateAttachment( new Date() );
     bot.send({ attachments: [ attachment ] });
   });
@@ -56,6 +56,8 @@ module.exports = (bot) => {
     const tomorrow = new Date();
     tomorrow.setDate( tomorrow.getDate() + 1 );
 
+    const weekNum = Math.floor( ( tomorrow.getDate() - 1 ) / 7 ) + 1;
+
     // ごみの日
     var trash = null;
     switch ( tomorrow.getDay() ) {
@@ -67,8 +69,7 @@ module.exports = (bot) => {
         trash = ':recycle: 資源ごみ';
         break;
       case 2: // 第１・第３火曜
-        let n = Math.floor( ( tomorrow.getDate() - 1 ) / 7 ) + 1;
-        if ( n === 1 || n === 3 ) {
+        if ( weekNum === 1 || weekNum === 3 ) {
           trash = ':battery: 不燃ごみ';
         }
         break;

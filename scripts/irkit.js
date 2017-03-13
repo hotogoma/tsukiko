@@ -33,7 +33,7 @@ module.exports = (bot) => {
     bot.respond(pattern.regexp, (msg) => {
       irkit.send( pattern.signal )
         .then(() => msg.send( pattern.message ))
-        .catch((errMsg) => msg.send( errorMsg ));
+        .catch((errMsg) => msg.send( errMsg ));
     });
   });
 
