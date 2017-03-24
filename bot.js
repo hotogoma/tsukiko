@@ -25,7 +25,7 @@ bot.on(Bot.EVENTS.MESSAGE.RECEIVED, kuromoji.onReceive.bind(kuromoji));
 
 bot.loadDir('./scripts');
 
-bot.start().then(() => {
+bot.on(Bot.EVENTS.CONNECTION.OPENED, () => {
   bot.data.members = members.map((member) => {
     const user = bot.data.users.filter((user) => user.name === member.name)[0];
     if ( user ) member = Object.assign({}, user, member);
@@ -34,3 +34,5 @@ bot.start().then(() => {
   bot.jobs.startAll();
   bot.http.listen( process.env.PORT || 80 );
 });
+
+module.exports = bot;

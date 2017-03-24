@@ -1,1 +1,1 @@
-web: node .
+web: echo "require('.').start()" | node
