@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "nf start",
-    "test": "mocha",
+    "test": "mocha --recursive",
     "lint": "eslint ."
   },
   "author": "hoto17296",
