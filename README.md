@@ -32,7 +32,7 @@ npm run lint
 ```
 
 ### pre-commit hook
-```
+``` sh
 echo "#\!/bin/bash -eu\n\nnpm run lint" > .git/hooks/pre-commit
 chmod +x .git/hooks/pre-commit
 ```
