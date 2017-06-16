@@ -15,5 +15,7 @@ services:
     env_file: .env
     environment:
       REDIS_URL: redis://redis/
+      SLACK_DEFAULT_CHANNEL: develop
+      HTTP_ACCESS_TOKEN: deadbeef
     depends_on:
       - redis
