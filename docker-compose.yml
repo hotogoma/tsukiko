@@ -1,0 +1,21 @@
+version: '3'
+services:
+
+  redis:
+    image: redis:alpine
+    ports:
+      - 16379:6379
+
+  web:
+    build: .
+    ports:
+      - 10080:80
+    volumes:
+      - .:/bot
+    env_file: .env
+    environment:
+      REDIS_URL: redis://redis/
+      SLACK_DEFAULT_CHANNEL: develop
+      HTTP_ACCESS_TOKEN: deadbeef
+    depends_on:
+      - redis
