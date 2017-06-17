@@ -1,6 +1,7 @@
 const help = {
   title: 'AWS',
   description: [
+    '`bot ec2 status` 各 EC2 インスタンスの起動状況を表示',
     '`bot ec2 <InstanceName> start` EC2 インスタンスを起動',
     '`bot ec2 <InstanceName> stop` EC2 インスタンスを停止',
   ],
@@ -17,12 +18,22 @@ AWS.config.update({
 
 const ec2 = new AWS.EC2();
 
+function getInstanceId(name) {
+  const instance = config.instances.filter(i => i.name.toLowerCase() === name.toLowerCase())[0];
+  return instance ? instance.id : null;
+}
+
+function getInstanceName(id) {
+  const instance = config.instances.filter(i => i.id === id)[0];
+  return instance ? instance.name : null;
+}
+
 module.exports = (bot) => {
 
   bot.respond(/^ec2 ([\w_]+) start$/i, (msg) => {
-    const instance = config.instances.filter(v => v.name === name)[0]
-    if (!instance) return msg.send('知らないインスタンスですね・・・');
-    ec2.startInstances({ InstanceIds: [instance.id] }, (err, data) => {
+    const id = getInstanceId(msg.match[1]);
+    if (!id) return msg.send('知らないインスタンスですね・・・');
+    ec2.startInstances({ InstanceIds: [id] }, (err, data) => {
       if (err) {
         console.error(err);
         msg.send('インスタンスの起動に失敗しました...');
@@ -33,15 +44,38 @@ module.exports = (bot) => {
   });
 
   bot.respond(/^ec2 ([\w_]+) stop$/i, (msg) => {
-    const instance = config.instances.filter(v => v.name === name)[0]
-    if (!instance) return msg.send('知らないインスタンスですね・・・');
-    ec2.stopInstances({ InstanceIds: [instance.id] }, (err, data) => {
+    const id = getInstanceId(msg.match[1]);
+    if (!id) return msg.send('知らないインスタンスですね・・・');
+    ec2.stopInstances({ InstanceIds: [id] }, (err, data) => {
       if (err) {
         console.error(err);
         msg.send('インスタンスの停止に失敗しました...');
       } else {
         msg.send('インスタンスを停止しました');
       }
+    });
+  });
+
+  bot.respond(/^ec2 status$/i, (msg) => {
+    const stateIcons = {
+      running: 'large_blue_circle',
+      terminated: 'red_circle',
+      stopped: 'white_circle',
+    };
+    ec2.describeInstanceStatus({ IncludeAllInstances: true }, (err, data) => {
+      if (err) {
+        console.error(err);
+        return msg.send('インスタンス情報の取得に失敗しました...');
+      }
+      text = data.InstanceStatuses.map((instance) => {
+        const id = instance.InstanceId;
+        const state = instance.InstanceState.Name;
+        const icon = stateIcons[state] || 'large_orange_diamond';
+        const name = getInstanceName(id);
+        const nameLabel = name ? ` (*${name}*)` : '';
+        return `:${icon}: \`${id}\`${nameLabel} is ${state}`;
+      });
+      msg.send(text.join("\n"));
     });
   });
 
