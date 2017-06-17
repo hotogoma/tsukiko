@@ -15,8 +15,8 @@
   "author": "hoto17296",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^3.17.1",
-    "mocha": "^3.0.2"
+    "eslint": "4",
+    "mocha": "3"
   },
   "dependencies": {
     "aws-sdk": "^2.72.0",
@@ -28,9 +28,9 @@
     "irkit": "^0.1.1",
     "ochingin": "github:hotogoma/node-ochingin",
     "request": "^2.74.0",
-    "shrike": "^0.5.2",
-    "shrike-utils": "^0.2.0",
-    "shukjitz": "^0.2.0",
+    "shrike": "*",
+    "shrike-utils": "^0.3.0",
+    "shukjitz": "*",
     "sprintf": "^0.1.5",
     "sudden-death": "^0.1.1",
     "xml2js": "^0.4.17"
