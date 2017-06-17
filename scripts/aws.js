@@ -29,7 +29,6 @@ function getInstanceName(id) {
 }
 
 module.exports = (bot) => {
-
   bot.respond(/^ec2 ([\w_]+) start$/i, (msg) => {
     const id = getInstanceId(msg.match[1]);
     if (!id) return msg.send('知らないインスタンスですね・・・');
@@ -75,7 +74,7 @@ module.exports = (bot) => {
         const nameLabel = name ? ` (*${name}*)` : '';
         return `:${icon}: \`${id}\`${nameLabel} is ${state}`;
       });
-      msg.send(text.join("\n"));
+      msg.send(text.join('\n'));
     });
   });
 
@@ -90,7 +89,6 @@ module.exports = (bot) => {
       if (count > 0) bot.send(`${count} 台の EC2 インスタンスが起動中です`);
     });
   });
-
-}
+};
 
 module.exports.help = help;

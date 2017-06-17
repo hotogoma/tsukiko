@@ -13,7 +13,7 @@ const signals = require('../configs/irkit.json');
 
 const irkit = new IRKit({
   clientKey: process.env.IRKIT_CLIENT_KEY,
-  deviceId:  process.env.IRKIT_DEVICE_ID,
+  deviceId: process.env.IRKIT_DEVICE_ID,
 });
 
 const patterns = [
@@ -27,19 +27,19 @@ const patterns = [
 ];
 
 module.exports = (bot) => {
-  if ( ! irkit.available() ) return;
+  if (!irkit.available()) return;
 
   patterns.forEach((pattern) => {
     bot.respond(pattern.regexp, (msg) => {
-      irkit.send( pattern.signal )
-        .then(() => msg.send( pattern.message ))
-        .catch((errMsg) => msg.send( errMsg ));
+      irkit.send(pattern.signal)
+        .then(() => msg.send(pattern.message))
+        .catch(errMsg => msg.send(errMsg));
     });
   });
 
   // 7時半に照明を点ける / 9時半に照明を消す
-  bot.jobs.add('0 30 7 * * *', () => irkit.send( signals.light.on ));
-  bot.jobs.add('0 30 9 * * *', () => irkit.send( signals.light.off ));
-}
+  bot.jobs.add('0 30 7 * * *', () => irkit.send(signals.light.on));
+  bot.jobs.add('0 30 9 * * *', () => irkit.send(signals.light.off));
+};
 
 module.exports.help = help;
