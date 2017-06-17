@@ -12,6 +12,7 @@ services:
       - 10080:80
     volumes:
       - .:/bot
+    command: nodemon .
     env_file: .env
     environment:
       REDIS_URL: redis://redis/
