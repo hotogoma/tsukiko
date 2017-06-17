@@ -31,12 +31,12 @@ module.exports = (bot) => {
     });
   });
 
-  bot.jobs.add('0 0 19 * * *', () => {
-    const bargain = BARGAINS[0];
-    Cookpad.bargains(bargain.url).then((items) => {
-      bot.send({ attachments: [ items2attachment(bargain, items) ] });
-    });
-  });
+  //bot.jobs.add('0 0 19 * * *', () => {
+  //  const bargain = BARGAINS[0];
+  //  Cookpad.bargains(bargain.url).then((items) => {
+  //    bot.send({ attachments: [ items2attachment(bargain, items) ] });
+  //  });
+  //});
 
 }
 

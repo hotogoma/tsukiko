@@ -52,6 +52,11 @@ module.exports = (bot) => {
     bot.send({ attachments: [ attachment ] });
   });
 
+  bot.jobs.add('0 0 19 * * 1-5', () => {
+    if (shukjitz.checkSync()) return;
+    bot.send('19時ですよ\nまだ働いているんですか');
+  });
+
   bot.jobs.add('0 0 22 * * *', () => {
     const tomorrow = new Date();
     tomorrow.setDate( tomorrow.getDate() + 1 );
