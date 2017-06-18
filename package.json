@@ -23,18 +23,18 @@
   "dependencies": {
     "aws-sdk": "^2.72.0",
     "body-parser": "^1.15.2",
-    "cheerio-httpcli": "^0.6.9",
+    "cheerio": "^1.0.0-rc.1",
     "express": "^4.14.0",
     "google-images": "^1.0.0",
     "hp-manager": "0.0.7",
     "irkit": "^0.1.1",
     "ochingin": "github:hotogoma/node-ochingin",
-    "request": "^2.74.0",
     "shrike": "*",
     "shrike-utils": "^0.3.0",
     "shukjitz": "*",
     "sprintf": "^0.1.5",
     "sudden-death": "^0.1.1",
+    "thip": "^0.2.0",
     "xml2js": "^0.4.17"
   }
 }

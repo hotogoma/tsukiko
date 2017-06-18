@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const members = require('./configs/members');
 
-Array.prototype.pickRandom = function () {
+Array.prototype.pickRandom = function pickRandom() { // eslint-disable-line no-extend-native
   return this[Math.floor(Math.random() * this.length)];
 };
 
@@ -27,9 +27,8 @@ bot.loadDir('./scripts');
 
 bot.start().then(() => {
   bot.data.members = members.map((member) => {
-    const user = bot.data.users.filter(user => user.name === member.name)[0];
-    if (user) member = Object.assign({}, user, member);
-    return member;
+    const user = bot.data.users.filter(u => u.name === member.name)[0];
+    return user ? Object.assign({}, user, member) : member;
   });
   bot.jobs.startAll();
   bot.http.listen(process.env.PORT || 80);

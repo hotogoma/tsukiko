@@ -20,7 +20,7 @@ module.exports = (bot) => {
 
     // 感動詞をオウム返しする
     msg.tokenized.forEach((token) => {
-      if (token.pos == '感動詞') msg.reply(token.surface_form);
+      if (token.pos === '感動詞') msg.reply(token.surface_form);
     });
   });
 };

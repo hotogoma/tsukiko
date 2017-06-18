@@ -77,6 +77,8 @@ module.exports = (bot) => {
           trash = ':battery: 不燃ごみ';
         }
         break;
+      default:
+        break;
     }
 
     if (trash) {

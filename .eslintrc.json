@@ -2,8 +2,5 @@
   "env": {
     "node": true
   },
-  "extends": "airbnb-base",
-  "rules": {
-    "no-console": "warn"
-  }
+  "extends": "airbnb-base"
 }

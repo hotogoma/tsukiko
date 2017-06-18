@@ -18,7 +18,7 @@ module.exports = (bot) => {
   bot.respond(/image (.+)$/i, (msg) => {
     client.search(msg.match[1]).then((images) => {
       if (images.length > 0) msg.send(images.pickRandom().url);
-    }).catch(e => console.error(e));
+    }).catch(e => bot.logger.error(e));
   });
 };
 
