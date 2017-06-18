@@ -18,9 +18,9 @@ const T_WADA = `
      T                 |
      |                 |
 \`\`\`
-`
+`;
 /* eslint-enable no-irregular-whitespace */
 
 module.exports = (bot) => {
-  bot.hear(/テスト(.*)(無|な)い/, (msg) => msg.send(T_WADA));
+  bot.hear(/テスト(.*)(無|な)い/, msg => msg.send(T_WADA));
 };

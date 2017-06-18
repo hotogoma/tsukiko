@@ -12,13 +12,13 @@ module.exports = (bot) => {
 
     bot.jobs.add('0 0 19 * * *', () => {
       bot.data.members.forEach((member) => {
-        if ( ! new Ochingin(member.ochingin, isHoliday).check() ) return;
+        if (!new Ochingin(member.ochingin, isHoliday).check()) return;
         bot.send(`${member.real_name}氏のおちんぎんが入りましたよ :moneybag:`);
       });
     });
 
     // TODO 次の給料日までのカウントダウン
   });
-}
+};
 
 module.exports.help = help;

@@ -29,13 +29,12 @@ function getInstanceName(id) {
 }
 
 module.exports = (bot) => {
-
   bot.respond(/^ec2 ([\w_]+) start$/i, (msg) => {
     const id = getInstanceId(msg.match[1]);
     if (!id) return msg.send('知らないインスタンスですね・・・');
-    ec2.startInstances({ InstanceIds: [id] }, (err, data) => {
+    ec2.startInstances({ InstanceIds: [id] }, (err) => {
       if (err) {
-        console.error(err);
+        bot.logger.error(err);
         msg.send('インスタンスの起動に失敗しました...');
       } else {
         msg.send('インスタンスを起動しました');
@@ -46,9 +45,9 @@ module.exports = (bot) => {
   bot.respond(/^ec2 ([\w_]+) stop$/i, (msg) => {
     const id = getInstanceId(msg.match[1]);
     if (!id) return msg.send('知らないインスタンスですね・・・');
-    ec2.stopInstances({ InstanceIds: [id] }, (err, data) => {
+    ec2.stopInstances({ InstanceIds: [id] }, (err) => {
       if (err) {
-        console.error(err);
+        bot.logger.error(err);
         msg.send('インスタンスの停止に失敗しました...');
       } else {
         msg.send('インスタンスを停止しました');
@@ -64,10 +63,10 @@ module.exports = (bot) => {
     };
     ec2.describeInstanceStatus({ IncludeAllInstances: true }, (err, data) => {
       if (err) {
-        console.error(err);
+        bot.logger.error(err);
         return msg.send('インスタンス情報の取得に失敗しました...');
       }
-      text = data.InstanceStatuses.map((instance) => {
+      const text = data.InstanceStatuses.map((instance) => {
         const id = instance.InstanceId;
         const state = instance.InstanceState.Name;
         const icon = stateIcons[state] || 'large_orange_diamond';
@@ -75,7 +74,7 @@ module.exports = (bot) => {
         const nameLabel = name ? ` (*${name}*)` : '';
         return `:${icon}: \`${id}\`${nameLabel} is ${state}`;
       });
-      msg.send(text.join("\n"));
+      msg.send(text.join('\n'));
     });
   });
 
@@ -83,14 +82,13 @@ module.exports = (bot) => {
   bot.jobs.add('0 0 * * * *', () => {
     ec2.describeInstanceStatus((err, data) => {
       if (err) {
-        console.error(err);
+        bot.logger.error(err);
         return bot.send('インスタンス情報の取得に失敗しました...');
       }
       const count = data.InstanceStatuses.length;
       if (count > 0) bot.send(`${count} 台の EC2 インスタンスが起動中です`);
     });
   });
-
-}
+};
 
 module.exports.help = help;

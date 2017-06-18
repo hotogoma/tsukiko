@@ -21,19 +21,19 @@ function getDateAttachment(date) {
   const title = sprintf('%02d月%02d日(%s%s)%s です',
     date.getMonth() + 1,
     date.getDate(),
-    '日月火水木金土'.charAt( date.getDay() ),
+    '日月火水木金土'.charAt(date.getDay()),
     holiday ? '祝' : '',
-    holiday ? ` ${holiday}` : ''
+    holiday ? ` ${holiday}` : '',
   );
   attachment.title = title;
   attachment.fallback = title;
 
   // 二十四節気
-  const sekki = date2sekki( date );
-  if ( sekki ) {
+  const sekki = date2sekki(date);
+  if (sekki) {
     attachment.fields.push({
-      title: sekki[0] + ' (二十四節気)',
-      value: sekki[1] + '〜',
+      title: `${sekki[0]} (二十四節気)`,
+      value: `${sekki[1]}〜`,
     });
   }
 
@@ -41,15 +41,14 @@ function getDateAttachment(date) {
 }
 
 module.exports = (bot) => {
-
   bot.respond(/今日/, () => {
-    const attachment = getDateAttachment( new Date() );
-    bot.send({ attachments: [ attachment ] });
+    const attachment = getDateAttachment(new Date());
+    bot.send({ attachments: [attachment] });
   });
 
   bot.jobs.add('0 30 7 * * *', () => {
-    const attachment = getDateAttachment( new Date() );
-    bot.send({ attachments: [ attachment ] });
+    const attachment = getDateAttachment(new Date());
+    bot.send({ attachments: [attachment] });
   });
 
   bot.jobs.add('0 0 19 * * 1-5', () => {
@@ -59,13 +58,13 @@ module.exports = (bot) => {
 
   bot.jobs.add('0 0 22 * * *', () => {
     const tomorrow = new Date();
-    tomorrow.setDate( tomorrow.getDate() + 1 );
+    tomorrow.setDate(tomorrow.getDate() + 1);
 
-    const weekNum = Math.floor( ( tomorrow.getDate() - 1 ) / 7 ) + 1;
+    const weekNum = Math.floor((tomorrow.getDate() - 1) / 7) + 1;
 
     // ごみの日
-    var trash = null;
-    switch ( tomorrow.getDay() ) {
+    let trash = null;
+    switch (tomorrow.getDay()) {
       case 3: // 水曜
       case 6: // 土曜
         trash = ':fire: 可燃ごみ';
@@ -74,18 +73,19 @@ module.exports = (bot) => {
         trash = ':recycle: 資源ごみ';
         break;
       case 2: // 第１・第３火曜
-        if ( weekNum === 1 || weekNum === 3 ) {
+        if (weekNum === 1 || weekNum === 3) {
           trash = ':battery: 不燃ごみ';
         }
         break;
+      default:
+        break;
     }
 
-    if ( trash ) {
+    if (trash) {
       const text = `明日は ${trash} の日です`;
       bot.send({ attachments: [{ fallback: text, title: text }] });
     }
   });
-
 };
 
 module.exports.help = help;
