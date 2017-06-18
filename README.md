@@ -1,8 +1,8 @@
 # tsukiko
 
-## Setup
+## Start Development
 ```
-npm install
+docker-compose up
 ```
 
 ### Environment Variables
@@ -18,11 +18,6 @@ npm install
 | `AWS_REGION` | `ap-northeast-1` |
 | `IRKIT_CLIENT_KEY` | `undefined` |
 | `IRKIT_DEVICE_ID` | `undefined` |
-
-## Run
-```
-npm start
-```
 
 ## Test
 ```
