@@ -17,11 +17,11 @@ module.exports = (bot) => {
 
     const date = new Date();
     // 土日は通知しない
-    if (date.getDay() % 6 === 0) return;
+    if (date.getDay() % 6 === 0) return res.send(200);
     // 祝日は通知しない
-    if (shukjitz.checkSync(date)) return;
+    if (shukjitz.checkSync(date)) return res.send(200);
     // 16時以前は通知しない
-    if (date.getHours() < 16) return;
+    if (date.getHours() < 16) return res.send(200);
 
     bot.send(`【${user.real_name}】ﾀｲｼｬ!!!`, () => res.send(200));
   });
