@@ -23,7 +23,7 @@ module.exports = (bot) => {
     // 16時以前は通知しない
     if (date.getHours() < 16) return res.send(200);
 
-    bot.send(`【${user.real_name}】ﾀｲｼｬ!!!`, () => res.send(200));
+    bot.send(`【${user.real_name}】ﾀｲｼｬ!!!`).then(() => res.send(200));
   });
 };
 
