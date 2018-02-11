@@ -56,6 +56,7 @@ module.exports = (bot) => {
     bot.send('19時ですよ\nまだ働いているんですか');
   });
 
+  /*
   bot.jobs.add('0 0 22 * * *', () => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
@@ -86,6 +87,7 @@ module.exports = (bot) => {
       bot.send({ attachments: [{ fallback: text, title: text }] });
     }
   });
+  */
 };
 
 module.exports.help = help;

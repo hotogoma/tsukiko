@@ -26,6 +26,7 @@ function weather2slackAttachment(weather) {
 }
 
 module.exports = (bot) => {
+  /*
   bot.respond(/天気/, (msg) => {
     getWeather().then((weather) => {
       msg.send({ attachments: [weather2slackAttachment(weather)] });
@@ -37,6 +38,7 @@ module.exports = (bot) => {
       bot.send({ attachments: [weather2slackAttachment(weather)] });
     });
   });
+  */
 };
 
 module.exports.help = help;
