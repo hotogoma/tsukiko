@@ -78,17 +78,17 @@ module.exports = (bot) => {
     });
   });
 
-  // インスタンスが起動中の場合は１時間に１回通知する
-  bot.jobs.add('0 0 * * * *', () => {
-    ec2.describeInstanceStatus((err, data) => {
-      if (err) {
-        bot.logger.error(err);
-        return bot.send('インスタンス情報の取得に失敗しました...');
-      }
-      const count = data.InstanceStatuses.length;
-      if (count > 0) bot.send(`${count} 台の EC2 インスタンスが起動中です`);
-    });
-  });
+  //// インスタンスが起動中の場合は１時間に１回通知する
+  //bot.jobs.add('0 0 * * * *', () => {
+  //  ec2.describeInstanceStatus((err, data) => {
+  //    if (err) {
+  //      bot.logger.error(err);
+  //      return bot.send('インスタンス情報の取得に失敗しました...');
+  //    }
+  //    const count = data.InstanceStatuses.length;
+  //    if (count > 0) bot.send(`${count} 台の EC2 インスタンスが起動中です`);
+  //  });
+  //});
 };
 
 module.exports.help = help;
